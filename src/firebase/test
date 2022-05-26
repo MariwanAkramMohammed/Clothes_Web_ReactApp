@@ -1,0 +1,24 @@
+
+export const createUserForFirestore = async (userAuth, addition) => {
+  if (!userAuth) return;
+  // console.log(userAuth.uid);
+  // console.log(userAuth);
+  const codl = collection(db, "user");
+  const userRef = doc(db, "user", `${userAuth.url}`);
+  const docSnap = await getDoc(userRef);
+  const current = new Date();
+  console.log(userRef);
+  if (!docSnap.exists()) {
+    const { displayName: name, email, uid } = userAuth;
+    try {
+      await setDoc(doc(db, "user", `${userAuth.url}`),{
+        name,
+        email,
+        current
+      });
+    } catch (error) {
+      console.log(error.message, "this is an error");
+    }
+  }
+  return userRef;
+};
