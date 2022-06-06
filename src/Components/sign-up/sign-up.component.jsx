@@ -23,13 +23,12 @@ class SignUp extends React.Component {
     this.setState({ [name]: value });
   };
   handelSubmit = async (event) => {
-
     event.preventDefault();
     // THEY already updated with handelchage
     const { displayName, email, password, confirmPassword } = this.state;
 
-      if (password !== confirmPassword){
-        alert("your pssword and confirm password is not equal !");
+    if (password !== confirmPassword) {
+      alert("your pssword and confirm password is not equal !");
       return;
     }
     try {

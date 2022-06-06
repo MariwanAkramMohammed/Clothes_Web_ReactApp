@@ -5,6 +5,7 @@ import userReducer from "./reducer/user/userReducer";
 import cartReducer from "./reducer/cart/cart.reduce";
 import DirectoryReducer from "./reducer/Directory/Directory.Reducer";
 import shopReducer from "./reducer/shop/shop.reducer";
+
 // redux-persist is a library which let's us use both (local , session)storage
 // in config say at what point you want to store
 // which type of storage you want to use

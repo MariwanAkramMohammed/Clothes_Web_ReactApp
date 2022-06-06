@@ -21,6 +21,10 @@ class App extends React.Component {
 
   componentDidMount() {
     const { Setcurrent } = this.props;
+    // const promise = AddCollectionAndDocument(
+    //   "collection",
+    //   DocumentListArray.map(({ title, items }) => ({ title, items }))
+    // );
 
     this.discription = onAuthStateChanged(auth, async (userAuth) => {
       if (userAuth) {

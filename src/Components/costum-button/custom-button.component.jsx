@@ -1,9 +1,7 @@
 import React from "react";
-import "./custom-button.style.scss";
+import { CustomButoonBT } from "./custom-button.style";
 
-const CustomButton = ({ children,SignInGoogle,invested, ...otherprop }) => (
-  <button className={`${invested?'invested':''} custom-button ${SignInGoogle?'sign-in-google':''}`} {...otherprop}>
-    {children}
-  </button>
+const CustomButton = ({ children, ...otherprop }) => (
+  <CustomButoonBT {...otherprop}>{children}</CustomButoonBT>
 );
 export default CustomButton;
