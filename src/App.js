@@ -4,7 +4,7 @@ import { onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import "./App.css";
+import { GlobalStyle } from "./createGlobal.style";
 
 import HomePage from "./pages/homepage.component";
 import ShopPage from "./pages/shop/shopPage.component";
@@ -21,10 +21,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const { Setcurrent } = this.props;
-    // const promise = AddCollectionAndDocument(
-    //   "collection",
-    //   DocumentListArray.map(({ title, items }) => ({ title, items }))
-    // );
 
     this.discription = onAuthStateChanged(auth, async (userAuth) => {
       if (userAuth) {
@@ -49,6 +45,7 @@ class App extends React.Component {
 
     return (
       <div>
+        <GlobalStyle />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

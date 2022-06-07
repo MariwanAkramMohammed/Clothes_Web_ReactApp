@@ -20,3 +20,8 @@ export const selectCollectionItem = (RouteParams) =>
     (collection) => (collection ? collection[RouteParams] : null)
     //retrn one singel array element true to function
   );
+export const selectCollectionLoaded = createSelector(
+  selectShop,
+  (shop) => shop.collections
+);
+// with double bang you can get ture or false value of your things

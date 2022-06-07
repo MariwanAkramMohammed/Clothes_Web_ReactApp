@@ -8,9 +8,10 @@ import { db } from "../../firebase/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { ConvertcollectionToMapAarray } from "../../firebase/firebase";
 import { ShopUpdateAction } from "../../redux/reducer/shop/shopaction";
-import { getDatabase } from "firebase/database";
+import { selectCollectionLoaded } from "../../redux/reducer/shop/shop.selector";
 
 import WithSpinner from "../../Components/with-spinner/with-spinner.component";
+import { createStructuredSelector } from "reselect";
 
 const CollectionOverview_WithSpinner = (props) => {
   const { isLoading, ...other } = props;
@@ -29,7 +30,7 @@ class ShopPage extends React.Component {
   componentDidMount() {
     const { UpdateShopData } = this.props;
     const ColRef = collection(db, "collection");
-    //there is three way to get data from backend database 
+    //there is three way to get data from backend database
     //1 via use firestore functon
     onSnapshot(ColRef, async (snapshotData) => {
       const collectionmap = ConvertcollectionToMapAarray(snapshotData);
@@ -53,6 +54,8 @@ class ShopPage extends React.Component {
   }
   render() {
     const { isLoading } = this.state;
+    const { isloaded } = this.props;
+    console.log(isloaded);
     return (
       <div className="shop_page">
         <Routes>
@@ -72,5 +75,8 @@ class ShopPage extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   UpdateShopData: (collection) => dispatch(ShopUpdateAction(collection)),
 });
+const map = createStructuredSelector({
+  isloaded: selectCollectionLoaded,
+});
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default connect(map, mapDispatchToProps)(ShopPage);
